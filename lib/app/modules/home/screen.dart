@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ogrenme/app/routes/app_paths.dart';
 
+import '../../core/widgets/action_card.dart';
+
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
 
@@ -34,7 +36,7 @@ class HomeScreen extends GetView<HomeController> {
                     padding: const EdgeInsets.all(20),
                     children: [
                       _buildWelcomeCard(),
-                      const SizedBox(height: 32),
+                      const SizedBox(height: 16),
                       const _QuickActionsGrid(),
                     ],
                   ),
@@ -56,13 +58,6 @@ class HomeScreen extends GetView<HomeController> {
                 end: Alignment.bottomRight,
               ),
               borderRadius: BorderRadius.circular(28),
-              boxShadow: [
-                BoxShadow(
-                  color: ColorConstants.primary.withOpacity(0.3),
-                  blurRadius: 20,
-                  offset: const Offset(0, 10),
-                ),
-              ],
             ),
             child: Row(
               children: [
@@ -144,7 +139,7 @@ class _QuickActionsGrid extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 const Text(
-                  'Hızlı İşlemler',
+                  'Oluşturulan Widgetler',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -156,47 +151,61 @@ class _QuickActionsGrid extends StatelessWidget {
             ),
           ),
           GridView.count(
-            crossAxisCount: 2,
+            crossAxisCount: SizeConfig.isTablet(context) ? 3 : SizeConfig.isMobile(context)?2:4,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
             childAspectRatio: 1.0,
             children: [
-              _ActionCard(
+              ActionCard(
                 icon: Icons.smart_button_rounded,
                 label: 'Butonlar',
                 color: const Color(0xFF6366F1),
                 description: 'Çeşitli buton tipleri',
                 onTap: () => Get.toNamed(AppPaths.button),
               ),
-              _ActionCard(
+              ActionCard(
                 icon: Icons.text_fields_rounded,
                 label: 'Metinler',
                 color: const Color(0xFF10B981),
                 description: 'Yazı stilleri',
                 onTap: () => Get.toNamed(AppPaths.text),
               ),
-              _ActionCard(
+              ActionCard(
                 icon: Icons.edit_note_rounded,
                 label: 'Giriş Alanları',
                 color: const Color(0xFFF59E0B),
                 description: 'Veri giriş formları',
                 onTap: () => Get.toNamed(AppPaths.textfield),
               ),
-              _ActionCard(
+              ActionCard(
                 icon: Icons.checklist_rtl_rounded,
                 label: 'Seçimler',
                 color: const Color(0xFFEC4899),
                 description: 'Checkbox ve Switch',
                 onTap: () => Get.toNamed(AppPaths.choose_wigdets),
               ),
-              _ActionCard(
+              ActionCard(
                 icon: Icons.view_list_rounded,
                 label: 'Liste & Kaydırma',
                 color: const Color(0xFF3B82F6),
                 description: 'ListView, GridView, Scroll',
                 onTap: () => Get.toNamed(AppPaths.list_scroll_widgets),
+              ),
+              ActionCard(
+                  icon: Icons.visibility_rounded,
+                  label: 'Görsel & Bilgi',
+                  color: const Color(0xFFFA3663),
+                  description: "Image, card, icon, avatar",
+                  onTap: () => Get.toNamed(AppPaths.visual_info_widgets),
+              ),
+              ActionCard(
+                icon: Icons.animation,
+                label: 'Animasyon',
+                color: const Color(0xFF2FAE88),
+                description: 'Animasyon denemeleri',
+                onTap: () => Get.toNamed(AppPaths.animations),
               ),
             ],
           ),
@@ -204,84 +213,4 @@ class _QuickActionsGrid extends StatelessWidget {
       );
 }
 
-class _ActionCard extends StatelessWidget {
-  const _ActionCard({
-    required this.icon,
-    required this.label,
-    required this.color,
-    required this.description,
-    this.onTap,
-  });
 
-  final VoidCallback? onTap;
-  final IconData icon;
-  final String label;
-  final String description;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: color.withOpacity(0.08),
-            blurRadius: 15,
-            offset: const Offset(0, 8),
-          ),
-        ],
-        border: Border.all(
-          color: color.withOpacity(0.1),
-          width: 1.5,
-        ),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(24),
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                    color: color.withOpacity(0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(icon, color: color, size: 32),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  label,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: ColorConstants.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  description,
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: ColorConstants.textPrimary.withOpacity(0.5),
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}

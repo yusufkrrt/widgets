@@ -71,5 +71,15 @@ class AppPages {
       page: ListScrollWidgetsScreen.new,
       binding: ListScrollWidgetsBindings(),
     ),
+    GetPage<void>(
+      name: AppPaths.visual_info_widgets,
+      page: VisualInfoWidgetsScreen.new,
+      binding: VisualInfoWidgetsBindings(),
+    ),
+    GetPage<void>(
+      name: AppPaths.animations,
+      page: AnimationsScreen.new,
+      binding: AnimationsBindings(),
+    ),
   ];
 }

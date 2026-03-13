@@ -1,0 +1,15 @@
+Mevcut ve planlanan bölümler oldukça kapsamlı. Eksik olabilecek veya eklenebilecek bazı ileri seviye Flutter konuları:
+
+Animasyonlar: Lottie, Rive gibi dış animasyon dosyaları desteği (SVG, JSON animasyonları).
+State Restoration: Uygulama durumunu geri yükleme (State Restoration API).
+Responsive Design: Tablet, masaüstü ve farklı ekran boyutları için responsive layout örnekleri.
+Internationalization (i18n): Çoklu dil desteği ve yerelleştirme.
+Accessibility: Erişilebilirlik (a11y) özellikleri, screen reader uyumu.
+Custom Widgets: Tamamen sıfırdan özel widget tasarımı.
+Slivers & CustomScrollView: SliverAppBar, SliverList, SliverGrid ile gelişmiş scroll efektleri.
+Platform Channels: Native kod ile iletişim (Android/iOS platform channel örnekleri).
+Networking: HTTP, WebSocket, REST API ile veri çekme ve gönderme.
+Persistence: SharedPreferences, Hive, SQLite ile veri saklama.
+Testing: Widget, unit ve integration test örnekleri.
+Performance: Profiling, lazy loading, optimize render teknikleri.
+Packages & Plugins: Popüler paketlerin (provider, dio, cached_network_image, url_launcher vb.) kullanımı.

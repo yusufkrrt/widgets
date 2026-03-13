@@ -12,4 +12,6 @@ abstract class AppPaths {
   static const String canon = '/canon';
   static const String choose_wigdets = '/choose-wigdets';
   static const String list_scroll_widgets = '/list-scroll-widgets';
+  static const String visual_info_widgets = '/visual-info-widgets';
+  static const String animations = '/animations';
 }

@@ -6,3 +6,5 @@ export 'splash/splash.dart';
 export 'canon/canon.dart';
 export 'choose_wigdets/choose_wigdets.dart';
 export 'list_scroll_widgets/list_scroll_widgets.dart';
+export 'visual_info_widgets/visual_info_widgets.dart';
+export 'animations/animations.dart';

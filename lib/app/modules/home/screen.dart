@@ -168,7 +168,7 @@ class _QuickActionsGrid extends StatelessWidget {
               ActionCard(
                 icon: Icons.text_fields_rounded,
                 label: 'Metinler',
-                color: const Color(0xFF10B981),
+                color: const Color(0xFF287E5F),
                 description: 'Yazı stilleri',
                 onTap: () => Get.toNamed(AppPaths.text),
               ),
@@ -206,6 +206,14 @@ class _QuickActionsGrid extends StatelessWidget {
                 color: const Color(0xFF2FAE88),
                 description: 'Animasyon denemeleri',
                 onTap: () => Get.toNamed(AppPaths.animations),
+              ),
+              ActionCard(
+                icon: Icons.twenty_three_mp_rounded,
+                label: 'Playground',
+                color: const Color(0xFF29C34F),
+                description: 'Widgets of the week denemeleri',
+                onTap:()=>Get.toNamed(AppPaths.playground)
+
               ),
             ],
           ),

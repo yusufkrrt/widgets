@@ -81,5 +81,10 @@ class AppPages {
       page: AnimationsScreen.new,
       binding: AnimationsBindings(),
     ),
+    GetPage<void>(
+      name: AppPaths.playground,
+      page: PlaygroundScreen.new,
+      binding: PlaygroundBindings(),
+    ),
   ];
 }

@@ -1,0 +1,10 @@
+datepicker:
+  select_date: "Select date"
+  title: "Date & Calendar"
+calendar:
+  no_events: "No events"
+tabs:
+  table: "Table"
+  custom: "Custom"
+app:
+  title: "Learning"

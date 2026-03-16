@@ -213,7 +213,34 @@ class _QuickActionsGrid extends StatelessWidget {
                 color: const Color(0xFF29C34F),
                 description: 'Widgets of the week denemeleri',
                 onTap:()=>Get.toNamed(AppPaths.playground)
-
+              ),
+              ActionCard(
+                  icon: Icons.bar_chart,
+                  label: 'Data visualation',
+                  color: const Color(0xFF9F30ED),
+                  description: 'Veri görselleştirme chat grafik',
+                  onTap:()=>Get.toNamed(AppPaths.graphs_statics)
+              ),
+              ActionCard(
+                  icon: Icons.calendar_month,
+                  label: 'Days Weeks',
+                  color: const Color(0xFF317B91),
+                  description: 'Tarih seçici ve takvim',
+                  onTap:()=>Get.toNamed(AppPaths.datepicker_calendar)
+              ),
+              ActionCard(
+                  icon: Icons.map_sharp,
+                  label: 'Maps&WebView',
+                  color: const Color(0xFF7EE4FF),
+                  description: 'Mapler ve webview kullanımı',
+                  onTap:()=>Get.toNamed(AppPaths.map_webview)
+              ),
+              ActionCard(
+                  icon: Icons.folder,
+                  label: 'File Picker',
+                  color: const Color(0xFFDAB356),
+                  description: 'Dosya fotoğraf vs seçme',
+                  onTap:()=>Get.toNamed(AppPaths.file_picker)
               ),
             ],
           ),

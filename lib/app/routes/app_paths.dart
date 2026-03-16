@@ -15,4 +15,9 @@ abstract class AppPaths {
   static const String visual_info_widgets = '/visual-info-widgets';
   static const String animations = '/animations';
   static const String playground = '/playground';
+  static const String graphs_statics = '/graphs-statics';
+  static const String datepicker_calendar = '/datepicker-calendar';
+  static const String map_webview = '/map-webview';
+  static const String filepicker = '/filepicker';
+  static const String file_picker = '/file-picker';
 }

@@ -86,5 +86,25 @@ class AppPages {
       page: PlaygroundScreen.new,
       binding: PlaygroundBindings(),
     ),
+    GetPage<void>(
+      name: AppPaths.graphs_statics,
+      page: GraphsStaticsScreen.new,
+      binding: GraphsStaticsBindings(),
+    ),
+    GetPage<void>(
+      name: AppPaths.datepicker_calendar,
+      page: DatepickerCalendarScreen.new,
+      binding: DatepickerCalendarBindings(),
+    ),
+    GetPage<void>(
+      name: AppPaths.map_webview,
+      page: MapScreen.new,
+      binding: MapWebviewBindings(),
+    ),
+    GetPage<void>(
+      name: AppPaths.file_picker,
+      page: FilePickerScreen.new,
+      binding: FilePickerBindings(),
+    ),
   ];
 }

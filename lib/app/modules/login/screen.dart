@@ -60,6 +60,17 @@ class LoginScreen extends GetView<LoginController> {
                       ),
                     ),
                     const SizedBox(height: 24),
+                    Obx(()=>
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text("Beni Hatırla",style: TextStyle(fontSize: 16,fontWeight: FontWeight(600)),),
+                          Checkbox(
+                            value: controller.isRememberMe.value,
+                            onChanged: (value) => controller.toggleRememberMe(),),
+                        ],
+                      ),
+                    ),
                     Obx(
                       () => SizedBox(
                         height: 52,

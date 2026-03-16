@@ -1,0 +1,10 @@
+datepicker:
+  select_date: "Tarih seç"
+  title: "Takvim & Tarih"
+calendar:
+  no_events: "Etkinlik yok"
+tabs:
+  table: "Table"
+  custom: "Custom"
+app:
+  title: "Öğrenme"

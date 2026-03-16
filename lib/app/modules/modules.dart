@@ -9,3 +9,7 @@ export 'list_scroll_widgets/list_scroll_widgets.dart';
 export 'visual_info_widgets/visual_info_widgets.dart';
 export 'animations/animations.dart';
 export 'playground/playground.dart';
+export 'graphs_statics/graphs_statics.dart';
+export 'datepicker_calendar/datepicker_calendar.dart';
+export 'map_webview/map_webview.dart';
+export 'file_picker/file_picker.dart';

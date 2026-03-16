@@ -10,6 +10,8 @@ class LoginController extends GetxController {
   final isLoading = false.obs;
   final isPasswordVisible = false.obs;
 
+  var isRememberMe=false.obs;
+
   @override
   void onClose() {
     usernameController.dispose();
@@ -21,10 +23,13 @@ class LoginController extends GetxController {
       isPasswordVisible.value = !isPasswordVisible.value;
 
   Future<void> login() async {
-    if (!formKey.currentState!.validate()) return;
+    // Remember Me aktifse validasyonu atla
+    if (!isRememberMe.value) {
+      if (!formKey.currentState!.validate()) return;
+    }
+
     try {
       isLoading.value = true;
-      // TODO: implement login logic
       await Get.offAllNamed<void>(AppPaths.home);
     } on Exception catch (e) {
       Get.snackbar('Hata', e.toString(), snackPosition: SnackPosition.BOTTOM);
@@ -32,4 +37,6 @@ class LoginController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  void toggleRememberMe() => isRememberMe.value = !isRememberMe.value;
 }

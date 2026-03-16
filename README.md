@@ -21,12 +21,12 @@ Aşağıdaki widget grupları başarıyla oluşturuldu ve projeye dahil edildi.
 Projenin bir sonraki aşamasında eklenecek özellikler:
 
 ### 📊 Veri & Analiz
-- [ ] **Grafikler & İstatistikler:** Chart, Pie, Bar, Line grafikleri ile veri görselleştirme.
-- [ ] **Takvim & Tarih:** DatePicker ve gelişmiş Calendar (Takvim) widgetları.
+- [x] **Grafikler & İstatistikler:** Chart, Pie, Bar, Line grafikleri ile veri görselleştirme.
+ - [x] **Takvim & Tarih:** DatePicker ve gelişmiş Calendar (Takvim) widgetları.
 
 ### 🌐 Bağlantı & Harita
-- [ ] **Harita & Konum:** Google Maps ve OpenStreetMap entegrasyonu.
-- [ ] **WebView & HTML:** Uygulama içinde web içeriği gösterimi.
+- [x] **Harita & Konum:** Google Maps ve OpenStreetMap entegrasyonu.
+- [x] **WebView & HTML:** Uygulama içinde web içeriği gösterimi.
 
 ### 🔔 Kullanıcı Deneyimi & Medya
 - [ ] **Bildirimler & Toast:** Snackbar, Alert ve özel Toast mesajları.

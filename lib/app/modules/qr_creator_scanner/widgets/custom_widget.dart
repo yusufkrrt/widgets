@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ogrenme/app/core/constants/color.dart';
+import 'package:ogrenme/app/core/constants/text_style.dart';
 
 class ScannerOverlay extends StatefulWidget {
   const ScannerOverlay({super.key});
@@ -37,7 +39,7 @@ class _ScannerOverlayState extends State<ScannerOverlay>
     const cornerLength = 28.0;
     const cornerWidth = 4.0;
     const cornerRadius = 10.0;
-    const cornerColor = Colors.white;
+    final cornerColor = ColorConstants.cardBackground;
 
     return Stack(
       alignment: Alignment.center,
@@ -50,13 +52,13 @@ class _ScannerOverlayState extends State<ScannerOverlay>
           ),
           child: Stack(
             children: [
-              Container(decoration: const BoxDecoration(color: Colors.black)),
+              Container(decoration: BoxDecoration(color: ColorConstants.textPrimary.withOpacity(0.02))),
               Center(
                 child: Container(
                   width: boxSize,
                   height: boxSize,
                   decoration: BoxDecoration(
-                    color: Colors.black,
+                    color: ColorConstants.cardBackground,
                     borderRadius: BorderRadius.circular(cornerRadius),
                   ),
                 ),
@@ -87,13 +89,13 @@ class _ScannerOverlayState extends State<ScannerOverlay>
             animation: _animation,
             builder: (_, __) => Align(
               alignment: Alignment(0, (_animation.value * 2) - 1),
-              child: Container(
+                  child: Container(
                 height: 2,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Colors.transparent,
-                      Colors.blue.shade400,
+                      ColorConstants.primary,
                       Colors.transparent,
                     ],
                   ),
@@ -107,12 +109,9 @@ class _ScannerOverlayState extends State<ScannerOverlay>
         // Alt yazı
         Positioned(
           bottom: MediaQuery.of(context).size.height / 2 - boxSize / 2 - 48,
-          child: const Text(
+          child: Text(
             'QR kod veya barkodu çerçeve içine alın',
-            style: TextStyle(
-              color: Colors.white70,
-              fontSize: 13,
-            ),
+            style: TextStyleConstants.caption.copyWith(color: ColorConstants.textSecondary),
           ),
         ),
       ],

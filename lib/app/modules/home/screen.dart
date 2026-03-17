@@ -238,14 +238,14 @@ class _QuickActionsGrid extends StatelessWidget {
               ActionCard(
                   icon: Icons.folder,
                   label: 'File Picker',
-                  color: const Color(0xFFDAB356),
+                  color: const Color(0xFFAF8D3A),
                   description: 'Dosya fotoğraf vs seçme',
                   onTap:()=>Get.toNamed(AppPaths.file_picker)
               ),
               ActionCard(
                   icon: Icons.qr_code,
                   label: 'Scanner',
-                  color: const Color(0xFFDAB356),
+                  color: const Color(0xFF423595),
                   description: 'QR/Barkod oluştur ve okut.',
                   onTap:()=>Get.toNamed(AppPaths.qr_creator_scanner)
               ),

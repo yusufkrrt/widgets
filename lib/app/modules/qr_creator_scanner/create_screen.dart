@@ -6,6 +6,8 @@ import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
 
 
 import 'package:flutter/material.dart';
+import 'package:ogrenme/app/core/constants/color.dart';
+import 'package:ogrenme/app/core/constants/text_style.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -21,16 +23,16 @@ class CreateScreen extends GetView<QrCreatorScannerController> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Colors.black,
+    backgroundColor: ColorConstants.backgroundColor,
     appBar: AppBar(
       backgroundColor: Colors.transparent,
       leading: IconButton(
         onPressed: controller.goBack,
-        icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
+        icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF6B7280)),
       ),
-      title: const Text(
+      title: Text(
         'Oluştur',
-        style: TextStyle(color: Colors.white),
+        style: TextStyleConstants.heading2.copyWith(color: ColorConstants.textPrimary),
       ),
     ),
     body: Padding(
@@ -40,17 +42,14 @@ class CreateScreen extends GetView<QrCreatorScannerController> {
         children: [
           Text(
             'Ne oluşturmak istersiniz?',
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.6),
-              fontSize: 15,
-            ),
+            style: TextStyleConstants.body.copyWith(color: ColorConstants.textSecondary),
           ),
           const SizedBox(height: 24),
           CreateTypeCard(
             icon: Icons.qr_code_2_outlined,
             label: 'QR Kod',
             subtitle: 'URL, metin veya iletişim bilgisi',
-            color: Colors.white,
+            color: ColorConstants.cardSecondary,
             onTap: () => Get.to(() => const QrGeneratorScreen()),
           ),
           const SizedBox(height: 16),
@@ -58,7 +57,7 @@ class CreateScreen extends GetView<QrCreatorScannerController> {
             icon: Icons.barcode_reader,
             label: 'Barkod',
             subtitle: 'EAN-13, Code128 formatları',
-            color: Colors.blue.shade400,
+            color: ColorConstants.cardSecondary,
             onTap: () => Get.to(() => const BarcodeGeneratorScreen()),
           ),
         ],
@@ -119,8 +118,8 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
         'Kaydedildi',
         'QR kod galeriye kaydedildi',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green.shade400,
-        colorText: Colors.white,
+        backgroundColor: ColorConstants.success,
+        colorText: ColorConstants.cardBackground,
       );
     } catch (e) {
       Get.snackbar('Hata', e.toString(), snackPosition: SnackPosition.BOTTOM);
@@ -135,15 +134,14 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Colors.black,
+    backgroundColor: ColorConstants.backgroundColor,
     appBar: AppBar(
       backgroundColor: Colors.transparent,
       leading: IconButton(
         onPressed: Get.back,
-        icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
+        icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF6B7280)),
       ),
-      title: const Text('QR Kod Oluştur',
-          style: TextStyle(color: Colors.white)),
+      title: Text('QR Kod Oluştur', style: TextStyleConstants.heading2.copyWith(color: ColorConstants.textPrimary)),
     ),
     body: SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -169,19 +167,17 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
                         horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
                       color: _selectedType == i
-                          ? Colors.white
-                          : Colors.white.withOpacity(0.08),
+                          ? ColorConstants.cardBackground
+                          : ColorConstants.cardBackground.withOpacity(0.08),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: Colors.white.withOpacity(0.2),
+                        color: ColorConstants.cardBackground.withOpacity(0.2),
                       ),
                     ),
                     child: Text(
                       _types[i],
-                      style: TextStyle(
-                        color: _selectedType == i
-                            ? Colors.black
-                            : Colors.white,
+                      style: TextStyleConstants.body.copyWith(
+                        color: _selectedType == i ? ColorConstants.textPrimary : ColorConstants.textSecondary,
                         fontWeight: FontWeight.w500,
                         fontSize: 13,
                       ),
@@ -196,23 +192,23 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
           // Input
           Container(
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.08),
+              color: ColorConstants.cardBackground.withOpacity(0.08),
               borderRadius: BorderRadius.circular(16),
               border:
-              Border.all(color: Colors.white.withOpacity(0.15)),
+              Border.all(color: ColorConstants.cardBackground.withOpacity(0.15)),
             ),
             child: TextField(
               controller: _controller,
-              style: const TextStyle(color: Colors.white),
+              style: TextStyleConstants.body.copyWith(color: ColorConstants.textPrimary),
               decoration: InputDecoration(
                 hintText: _hint,
                 hintStyle:
-                TextStyle(color: Colors.white.withOpacity(0.3)),
+                TextStyleConstants.caption.copyWith(color: ColorConstants.textSecondary.withOpacity(0.6)),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.all(16),
                 suffixIcon: IconButton(
                   icon: Icon(Icons.clear,
-                      color: Colors.white.withOpacity(0.4), size: 18),
+                      color: ColorConstants.textSecondary.withOpacity(0.6), size: 18),
                   onPressed: () {
                     _controller.clear();
                     setState(() => _qrData = '');
@@ -228,8 +224,8 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
           ElevatedButton(
             onPressed: _generate,
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.black,
+              backgroundColor: ColorConstants.cardBackground,
+              foregroundColor: ColorConstants.textPrimary,
               padding: const EdgeInsets.symmetric(vertical: 14),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14),
@@ -245,17 +241,17 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
             Center(
               child: RepaintBoundary(
                 key: _repaintKey,
-                child: Container(
+                  child: Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: ColorConstants.cardBackground,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: QrImageView(
                     data: _qrData,
                     version: QrVersions.auto,
                     size: 200,
-                    backgroundColor: Colors.white,
+                    backgroundColor: ColorConstants.cardBackground,
                   ),
                 ),
               ),
@@ -272,14 +268,14 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
                     },
                     icon: const Icon(Icons.copy_outlined, size: 16),
                     label: const Text('Metni Kopyala'),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      side: BorderSide(
-                          color: Colors.white.withOpacity(0.3)),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: ColorConstants.textPrimary,
+                              side: BorderSide(
+                                  color: ColorConstants.cardBackground.withOpacity(0.3)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -289,8 +285,8 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
                     icon: const Icon(Icons.download_outlined, size: 16),
                     label: const Text('Galeriye Kaydet'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.black,
+                      backgroundColor: ColorConstants.cardBackground,
+                      foregroundColor: ColorConstants.textPrimary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -352,8 +348,8 @@ class _BarcodeGeneratorScreenState extends State<BarcodeGeneratorScreen> {
         'Kaydedildi',
         'Barkod galeriye kaydedildi',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green.shade400,
-        colorText: Colors.white,
+        backgroundColor: ColorConstants.success,
+        colorText: ColorConstants.cardBackground,
       );
     } catch (e) {
       Get.snackbar('Hata', e.toString(), snackPosition: SnackPosition.BOTTOM);
@@ -400,19 +396,17 @@ class _BarcodeGeneratorScreenState extends State<BarcodeGeneratorScreen> {
                         horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
                       color: _selectedFormat == i
-                          ? Colors.blue.shade400
-                          : Colors.white.withOpacity(0.08),
+                          ? ColorConstants.primary
+                          : ColorConstants.cardBackground.withOpacity(0.08),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: Colors.blue.shade400.withOpacity(0.3),
+                        color: ColorConstants.primary.withOpacity(0.3),
                       ),
                     ),
                     child: Text(
                       _formats[i].$1,
-                      style: TextStyle(
-                        color: _selectedFormat == i
-                            ? Colors.white
-                            : Colors.white.withOpacity(0.7),
+                      style: TextStyleConstants.body.copyWith(
+                        color: _selectedFormat == i ? ColorConstants.cardBackground : ColorConstants.textSecondary.withOpacity(0.9),
                         fontWeight: FontWeight.w500,
                         fontSize: 13,
                       ),
@@ -425,13 +419,13 @@ class _BarcodeGeneratorScreenState extends State<BarcodeGeneratorScreen> {
           const SizedBox(height: 20),
           Container(
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.08),
+              color: ColorConstants.cardBackground.withOpacity(0.08),
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.white.withOpacity(0.15)),
+              border: Border.all(color: ColorConstants.cardBackground.withOpacity(0.15)),
             ),
             child: TextField(
               controller: _controller,
-              style: const TextStyle(color: Colors.white),
+              style: TextStyleConstants.body.copyWith(color: ColorConstants.textPrimary),
               keyboardType: _formats[_selectedFormat].$1.contains('EAN')
                   ? TextInputType.number
                   : TextInputType.text,
@@ -440,12 +434,12 @@ class _BarcodeGeneratorScreenState extends State<BarcodeGeneratorScreen> {
                     ? 'Sadece rakam girin'
                     : 'Barkod içeriğini girin',
                 hintStyle:
-                TextStyle(color: Colors.white.withOpacity(0.3)),
+                TextStyleConstants.caption.copyWith(color: ColorConstants.textSecondary.withOpacity(0.6)),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.all(16),
                 suffixIcon: IconButton(
                   icon: Icon(Icons.clear,
-                      color: Colors.white.withOpacity(0.4), size: 18),
+                      color: ColorConstants.textSecondary.withOpacity(0.6), size: 18),
                   onPressed: () {
                     _controller.clear();
                     setState(() => _barcodeData = '');
@@ -459,8 +453,8 @@ class _BarcodeGeneratorScreenState extends State<BarcodeGeneratorScreen> {
           ElevatedButton(
             onPressed: _generate,
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue.shade400,
-              foregroundColor: Colors.white,
+              backgroundColor: ColorConstants.primary,
+              foregroundColor: ColorConstants.cardBackground,
               padding: const EdgeInsets.symmetric(vertical: 14),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14),
@@ -478,7 +472,7 @@ class _BarcodeGeneratorScreenState extends State<BarcodeGeneratorScreen> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 24, vertical: 20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: ColorConstants.cardBackground,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: BarcodeWidget(
@@ -486,12 +480,11 @@ class _BarcodeGeneratorScreenState extends State<BarcodeGeneratorScreen> {
                     data: _barcodeData,
                     width: 240,
                     height: 100,
-                    color: Colors.black,
-                    backgroundColor: Colors.white,
+                    color: ColorConstants.textPrimary,
+                    backgroundColor: ColorConstants.cardBackground,
                     errorBuilder: (_, error) => Text(
                       'Geçersiz veri: $error',
-                      style: const TextStyle(
-                          color: Colors.red, fontSize: 12),
+                      style: TextStyleConstants.caption.copyWith(color: ColorConstants.error, fontSize: 12),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -504,8 +497,8 @@ class _BarcodeGeneratorScreenState extends State<BarcodeGeneratorScreen> {
               icon: const Icon(Icons.download_outlined, size: 16),
               label: const Text('Galeriye Kaydet'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue.shade400,
-                foregroundColor: Colors.white,
+                backgroundColor: ColorConstants.primary,
+                foregroundColor: ColorConstants.cardBackground,
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),

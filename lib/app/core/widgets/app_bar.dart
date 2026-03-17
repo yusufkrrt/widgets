@@ -4,6 +4,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({
     required this.context,
     this.titleWidget,
+    this.leading,
     this.titleLeftPadding = 0,
     this.actions,
     super.key,
@@ -11,6 +12,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   final BuildContext context;
   final Widget? titleWidget;
+  final Widget? leading;
   final double titleLeftPadding;
   final List<Widget>? actions;
 
@@ -21,6 +23,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) => AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        leading: leading,
         title: Padding(
           padding: EdgeInsets.only(left: titleLeftPadding),
           child: titleWidget,

@@ -17,6 +17,10 @@ class MapScreen extends GetView<MapWebviewController> {
       backgroundColor: ColorConstants.backgroundColor,
       appBar: AppBarWidget(
         context: context,
+        leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF6B7280)),
+        ),
         titleWidget: const Text('Genişletilmiş Map'),
       ),
       body: Obx(

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ogrenme/app/core/constants/color.dart';
+import 'package:ogrenme/app/core/constants/text_style.dart';
 import 'package:get/get.dart';
 
+import '../../core/widgets/app_bar.dart';
 import 'controller.dart';
 import 'create_screen.dart';
 import 'scan_screen.dart';
@@ -17,13 +20,22 @@ class QrCreatorScannerScreen extends GetView<QrCreatorScannerController> {
         case ScannerMode.create:
           return const CreateScreen();
         case ScannerMode.none:
-          return _buildHome();
+          return _buildHome(context);
       }
     }),
   );
 
-  Widget _buildHome() => Scaffold(
-    backgroundColor: Colors.black,
+  Widget _buildHome(BuildContext context) => Scaffold(
+    backgroundColor: ColorConstants.backgroundColor,
+
+    appBar: AppBarWidget(
+      context: context,
+      leading: IconButton(
+        onPressed: () => Get.back(),
+        icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF6B7280)),
+      ),
+      titleWidget: Text("Scanner - Create"),
+    ),
     body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(32),
@@ -35,46 +47,40 @@ class QrCreatorScannerScreen extends GetView<QrCreatorScannerController> {
             // Logo / başlık
             const Icon(
               Icons.qr_code_scanner_outlined,
-              color: Colors.white,
+              color: ColorConstants.cardPrimary,
               size: 72,
             ),
             const SizedBox(height: 24),
-            const Text(
+            Text(
               'QR & Barkod',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28,
-                fontWeight: FontWeight.w700,
-              ),
+              style: TextStyleConstants.heading1.copyWith(color: ColorConstants.textPrimary),
             ),
             const SizedBox(height: 8),
             Text(
               'Ne yapmak istersiniz?',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.5),
-                fontSize: 15,
-              ),
+              style: TextStyleConstants.body.copyWith(color: ColorConstants.textSecondary),
             ),
 
             const Spacer(),
 
             // Okut butonu
-            _ModeButton(
+              _ModeButton(
               icon: Icons.document_scanner_outlined,
               label: 'Okut',
               subtitle: 'QR kod veya barkod tara',
+              color:  ColorConstants.primary,
               onTap: controller.goScan,
             ),
             const SizedBox(height: 16),
 
             // Oluştur butonu
-            _ModeButton(
+              _ModeButton(
               icon: Icons.add_box_outlined,
               label: 'Oluştur',
               subtitle: 'QR kod veya barkod oluştur',
-              color: Colors.blue.shade400,
+              color: ColorConstants.primary,
               onTap: controller.goCreate,
             ),
 
@@ -98,7 +104,7 @@ class _ModeButton extends StatelessWidget {
     required this.label,
     required this.subtitle,
     required this.onTap,
-    this.color = Colors.white,
+    this.color = ColorConstants.cardBackground,
   });
 
   @override
@@ -128,19 +134,12 @@ class _ModeButton extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: TextStyle(
-                  color: color,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyleConstants.heading2.copyWith(color: color, fontSize: 18, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 2),
               Text(
                 subtitle,
-                style: TextStyle(
-                  color: color.withOpacity(0.55),
-                  fontSize: 13,
-                ),
+                style: TextStyleConstants.caption.copyWith(color: color.withOpacity(0.55), fontSize: 13),
               ),
             ],
           ),

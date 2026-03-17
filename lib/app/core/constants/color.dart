@@ -4,6 +4,8 @@ abstract class ColorConstants {
   ColorConstants._();
 
   static const Color primary = Color(0xFFB71C1C);
+  static const Color cardPrimary = Color(0xFFD35E5E);
+  static const Color cardSecondary = Color(0xFF832929);
   static const Color primaryLight = Color(0xFFFDE8E9);
   static const Color backgroundColor = Color(0xFFF5F7FA);
   static const Color cardBackground = Colors.white;

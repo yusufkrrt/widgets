@@ -14,6 +14,8 @@ Aşağıdaki widget grupları başarıyla oluşturuldu ve projeye dahil edildi.
 - [x] **📜 Liste & Kaydırma** - *ListView, GridView ve Yatay Kaydırma (Scroll)*
 - [x] **🖼️ Görsel & Bilgi** - *Image, Card, Icon, CircleAvatar ve Modern Tasarımlar*
 - [x] **✨ Animasyonlar** - *Implicit (Örtük) Animasyonlar ve Özel CustomPainter Dalga Efektleri*
+- [x] **Dosya & Medya:** - *Dosya seçici, video oynatıcı ve ses çalar.*
+- [x] **QR & Barkod:** - *QR kod oluşturma ve kamera ile okuma.*
 
 ---
 
@@ -30,8 +32,8 @@ Projenin bir sonraki aşamasında eklenecek özellikler:
 
 ### 🔔 Kullanıcı Deneyimi & Medya
 - [ ] **Bildirimler & Toast:** Snackbar, Alert ve özel Toast mesajları.
-- [ ] **Dosya & Medya:** Dosya seçici, video oynatıcı ve ses çalar.
-- [ ] **QR & Barkod:** QR kod oluşturma ve kamera ile okuma.
+- [x] **Dosya & Medya:** Dosya seçici, video oynatıcı ve ses çalar.
+- [x] **QR & Barkod:** QR kod oluşturma ve kamera ile okuma.
 
 ### 🎨 Tasarım & Kişiselleştirme
 - [ ] **Tema & Ayarlar:** Dark/Light mode desteği ve uygulama ayarları ekranı.

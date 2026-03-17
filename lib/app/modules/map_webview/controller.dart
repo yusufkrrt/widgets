@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 
 class MapWebviewController extends GetxController {
   final isLoading = false.obs;
@@ -12,17 +13,28 @@ class MapWebviewController extends GetxController {
   var polylines = <Polyline>[].obs;
   final zoom = 13.0.obs;
   final selectedLayerIndex = 0.obs;
-  final searchController = TextEditingController();
+  TextEditingController? searchController;
   var markers = <CustomMarker>[].obs;
-
-  // Değişkeni doğrudan başlatıyoruz (Late initialization hatasını önler)
   final WebViewController webViewController = WebViewController();
+
+  bool _locationChecked = false;
 
   @override
   void onInit() {
     super.onInit();
+    if (searchController != null) {
+      searchController!.dispose();
+    }
+    searchController = TextEditingController();
     _setupWebView();
     _load();
+  }
+
+  @override
+  void onClose() {
+    searchController?.dispose();
+    searchController = null;
+    super.onClose();
   }
 
   void _setupWebView() {
@@ -75,10 +87,26 @@ class MapWebviewController extends GetxController {
     }
   }
 
-  @override
-  void onClose() {
-    searchController.dispose();
-    super.onClose();
+  Future<void> ensureLocationPermissionAndShowCurrent({bool force = false}) async {
+    if (_locationChecked && !force) return;
+    _locationChecked = true;
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        Get.snackbar('Konum', 'Konum izni verilmedi');
+        return;
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      Get.snackbar('Konum', 'Konum izni kalıcı olarak reddedildi');
+      return;
+    }
+    // İzin varsa mevcut konumu göster
+    final pos = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    center.value = LatLng(pos.latitude, pos.longitude);
+    zoom.value = 16.0;
+    addMarker(LatLng(pos.latitude, pos.longitude));
   }
 
   void openFavoritesPanel() {}

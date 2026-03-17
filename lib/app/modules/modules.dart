@@ -13,3 +13,4 @@ export 'graphs_statics/graphs_statics.dart';
 export 'datepicker_calendar/datepicker_calendar.dart';
 export 'map_webview/map_webview.dart';
 export 'file_picker/file_picker.dart';
+export 'qr_creator_scanner/qr_creator_scanner.dart';

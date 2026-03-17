@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'controller.dart';
+import 'widgets/media_viewer.dart';
 
 class FilePickerScreen extends GetView<FilePickerController> {
   const FilePickerScreen({super.key});
@@ -114,10 +115,26 @@ class FilePickerScreen extends GetView<FilePickerController> {
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          IconButton(
-            icon: const Icon(Icons.open_in_new_outlined, size: 20),
-            onPressed: () => controller.openFile(file),
-            tooltip: 'Aç',
+          Row(
+            children: [
+              Text("Aç"),
+              IconButton(
+                icon: const Icon(Icons.open_in_new_outlined, size: 20),
+                onPressed: () {
+                  if (file.path != null) {
+                    Navigator.of(Get.context!).push(
+                      MaterialPageRoute(
+                        builder: (_) => MediaViewerPage(
+                          path: file.path!,
+                          extension: file.extension,
+                        ),
+                      ),
+                    );
+                  }
+                },
+                tooltip: 'Aç',
+              ),
+            ],
           ),
           IconButton(
             icon: const Icon(Icons.close, size: 20),

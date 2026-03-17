@@ -242,6 +242,13 @@ class _QuickActionsGrid extends StatelessWidget {
                   description: 'Dosya fotoğraf vs seçme',
                   onTap:()=>Get.toNamed(AppPaths.file_picker)
               ),
+              ActionCard(
+                  icon: Icons.qr_code,
+                  label: 'Scanner',
+                  color: const Color(0xFFDAB356),
+                  description: 'QR/Barkod oluştur ve okut.',
+                  onTap:()=>Get.toNamed(AppPaths.qr_creator_scanner)
+              ),
             ],
           ),
         ],

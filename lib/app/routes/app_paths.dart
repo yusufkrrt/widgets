@@ -20,4 +20,5 @@ abstract class AppPaths {
   static const String map_webview = '/map-webview';
   static const String filepicker = '/filepicker';
   static const String file_picker = '/file-picker';
+  static const String qr_creator_scanner = '/qr-creator-scanner';
 }

@@ -1,5 +1,7 @@
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../controller.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,21 @@ Widget buildMap() {
       {
         'name': 'CartoDB',
         'url': 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        'subdomains': ['a', 'b', 'c']
+      },
+      {
+        'name': 'CyclOSM',
+        'url': 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
+        'subdomains': ['a', 'b', 'c']
+      },
+      {
+        'name': 'Shortbread',
+        'url': 'https://tiles.stadiamaps.com/tiles/stamen_shortbread/{z}/{x}/{y}.png',
+        'subdomains': ['a', 'b', 'c']
+      },
+      {
+        'name': 'Tracestrack',
+        'url': 'https://tile.tracestrack.com/carto/{z}/{x}/{y}.png',
         'subdomains': ['a', 'b', 'c']
       }
     ];
@@ -104,7 +121,7 @@ Widget buildSearchBar() {
             IconButton(
               icon: const Icon(Icons.search),
               onPressed: () =>
-                  controller.searchAndGo(controller.searchController.text),
+                  controller.searchAndGo(controller.searchController!.text),
             ),
           ],
         ),
@@ -122,7 +139,7 @@ Widget buildLayerSelector() {
       elevation: 4,
       child: Obx(() {
         final selectedLayer = controller.selectedLayerIndex.value;
-        final baseLayers = ['OSM', 'CartoDB','CyclOSM','Shortbread'];
+        final baseLayers = ['OSM', 'CartoDB','CyclOSM','Shortbread','Tracestrack'];
         return DropdownButton<int>(
           value: selectedLayer,
           underline: const SizedBox(),
@@ -174,6 +191,34 @@ Widget buildFavoritesButton() {
       mini: true,
       child: const Icon(Icons.star),
       onPressed: () => controller.openFavoritesPanel(),
+    ),
+  );
+}
+
+// ------------------ MEVCUT KONUMA GİT BUTONU ------------------
+Widget buildCurrentLocationButton() {
+  return Positioned(
+    bottom: 100,
+    right: 80, // Zoom butonlarından sola kaydırıldı
+    child: FloatingActionButton(
+      heroTag: 'current_location',
+      mini: true,
+      child: const Icon(Icons.my_location),
+      onPressed: () {
+         //controller.ensureLocationPermissionAndShowCurrent(force: true);
+         Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then((pos) {
+           final lat = pos.latitude;
+           final lon = pos.longitude;
+           if (lat != null && lon != null) {
+             controller.center.value = LatLng(lat, lon);
+             controller.zoom.value = 16.0;
+             controller.addMarker(LatLng(lat, lon));
+           }
+         }).catchError((e) {
+           Get.snackbar('Hata', 'Konum alınırken hata oluştu: $e');
+         });
+         },
+      tooltip: 'Mevcut Konuma Git',
     ),
   );
 }

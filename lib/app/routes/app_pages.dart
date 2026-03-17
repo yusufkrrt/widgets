@@ -106,5 +106,10 @@ class AppPages {
       page: FilePickerScreen.new,
       binding: FilePickerBindings(),
     ),
+    GetPage<void>(
+      name: AppPaths.qr_creator_scanner,
+      page: QrCreatorScannerScreen.new,
+      binding: QrCreatorScannerBindings(),
+    ),
   ];
 }
